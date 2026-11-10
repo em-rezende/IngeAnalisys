@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """One-click tools (with inferences): place an annotation, the solar
 diagram center… They are created when requested, never at module level:
 a ``Tool`` class in the module would get its own entry in the Extensions

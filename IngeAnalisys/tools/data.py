@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """What the site analysis stores IN THE DOCUMENT (.igz).
 
 Four values in ``scene.plugin_data``, each with its own pace:

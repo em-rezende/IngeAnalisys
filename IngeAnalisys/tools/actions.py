@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """The site-analysis operations, without widgets.
 
 Every operation that changes the model is ONE undo step. The panel, the

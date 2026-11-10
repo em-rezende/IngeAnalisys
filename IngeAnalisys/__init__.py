@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Site Analysis — an IngeTrazo EXTENSION.
 
 Sun · Wind · Weather · Context · Masses, over the model itself: the 3D
@@ -21,6 +22,17 @@ through ``setup(app)`` (views/extension_api.py, API 2):
 - data in the document (.igz), with undo;
 - location, sun time, basemap and terrain are IngeTrazo's — a single
   truth, not a copy.
+
+CREDIT — this is not the work of whoever maintains this copy. The extension
+``analisis_sitio``, its design and every method in it (EPW climate, solar
+diagram, shadows, winds, OSM context, masses and lots, radiation and shade
+maps, annotations, export) are the work of **jufegofoto-cell**, who brought
+the web app into IngeTrazo: https://github.com/jufegofoto-cell/IngeAnalisys.
+This copy is a fork that adds the nine language catalogs, the layout in
+``tools/``/``i18n/``/``icons/``, the unified toolbar, the floating panels and
+fixes to shortcuts and dialogs; each file says so above. What changed, and
+under which licence (GPL-3.0-or-later, as the original), is written in
+CREDITS.md at the root of the repository.
 
 Installation (docs/plugins.md — a package folder with ``__init__.py``):
 

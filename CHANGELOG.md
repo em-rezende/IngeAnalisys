@@ -5,6 +5,17 @@ of the catalog entry (`catalog/ingeanalisys.toml`) and the tag
 (`v1.9.0`): the three must match, and `scripts/check_plugin.py` says so
 when they do not.
 
+## Credits
+
+The extension `analisis_sitio` — its idea, its method and its first
+implementation — is the work of **jufegofoto-cell**
+(<https://github.com/jufegofoto-cell/IngeAnalisys>), who brought the
+*Análisis de Sitio 3D* web app into IngeTrazo. Everything below in this file
+is a modification made in a fork, and it is credited as such in `CREDITS.md`,
+in the docstring of `IngeAnalisys/__init__.py`, in the header of every module
+of the package and in the catalog entry (`author = "jufegofoto-cell"`). The
+original author was informed of these changes before publication.
+
 ## 1.9.0 — first release as a catalog extension
 
 Packaging and compatibility, so the extension can be installed by

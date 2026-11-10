@@ -10,6 +10,32 @@ SketchUp plugin: it does not modify the core, everything enters through
 
 ![Site Analysis — dock, primary toolbar, secondary toolbar](screenshots/IngeAnalisys.png)
 
+## Authorship and credits
+
+The extension is **jufegofoto-cell's work**
+([github.com/jufegofoto-cell/IngeAnalisys](https://github.com/jufegofoto-cell/IngeAnalisys)),
+who turned the *Análisis de Sitio 3D* web app into an IngeTrazo extension.
+**This repository is a fork** with the modifications listed below and does not
+claim the original work: the design, the method and the credit are his.
+Details of every change and the licence notice: [`CREDITS.md`](CREDITS.md).
+
+What this fork (1.9.0) adds:
+
+- nine language catalogs — pt-BR, es, en, de, it, fr, zh-CN, ru, ja
+  (`IngeAnalisys/i18n/`);
+- the code organised in folders — `tools/`, `i18n/`, `icons/`, one package with
+  `__init__.py` and `setup(app)`;
+- one unified toolbar with 19 buttons and theme-aware SVG icons
+  (`tools/toolbar.py`);
+- draggable floating panels: information and conventions, and the colour scale
+  of the radiation and shade maps;
+- fixes to keyboard shortcuts and to dialog loading. It has been tested and
+  works.
+
+Maintained by Ezequiel M. Rezende ([@em-rezende](https://github.com/em-rezende)).
+Projects saved with the original version open the same way: its document keys
+(`analisis_sitio`, `group.ext["analisis_sitio"]`) are still read.
+
 ## Installation
 
 **From the catalog** (the easy way): **Extensions ▸ Manage extensions…**,

@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """What is drawn over the 3D view — ``app.add_overlay``.
 
 Solar diagram (yearly band, analemmas, paths for the 21st of each month,

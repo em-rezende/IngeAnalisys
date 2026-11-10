@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """The «Site Analysis» tab in the side shelf.
 
 The same sections as the web app — hour and sun, location, EPW climate,

@@ -280,7 +280,13 @@ def check_catalog(entry: dict) -> None:
     if entry.get("license") not in LICENCES:
         problem(f"catalog entry: {entry.get('license')!r} is not a free "
                 "licence the catalog accepts")
-    for field in ("name", "summary"):
+    for field, limit in (("name", 60), ("summary", 240),
+                         ("description", 2000)):
+        if field not in entry:
+            if field == "description":      # optional
+                continue
+            problem(f"catalog entry: [{field}] must have es and/or en")
+            continue
         table = entry.get(field)
         if not isinstance(table, dict) or not table:
             problem(f"catalog entry: [{field}] must have es and/or en")
@@ -291,14 +297,11 @@ def check_catalog(entry: dict) -> None:
                         "the page shows (es, en, pt)")
             elif not str(value).strip():
                 problem(f"catalog entry: [{field}.{lang}] is empty")
+            elif len(str(value)) > limit:
+                problem(f"catalog entry: [{field}.{lang}] is longer than "
+                        f"{limit} characters")
         if not any(lang in table for lang in ("es", "en")):
             problem(f"catalog entry: [{field}] needs Spanish or English")
-    summary = entry.get("summary")
-    if isinstance(summary, dict):
-        for lang, value in summary.items():
-            if len(str(value)) > 240:
-                problem(f"catalog entry: [summary.{lang}] is longer than "
-                        "240 characters")
     tags = entry.get("tags")
     if not isinstance(tags, list) or not tags:
         problem("catalog entry: 'tags' needs at least one tag")

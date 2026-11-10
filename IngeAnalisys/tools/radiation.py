@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Incident solar radiation on the model surfaces.
 
 BioSim (and Ecotect / Ladybug) method, for each sample point of a surface,

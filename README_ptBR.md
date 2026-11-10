@@ -10,6 +10,32 @@ um plugin de SketchUp: não modifica o núcleo, tudo entra por `setup(app)`
 
 ![Site Analysis — dock, primary toolbar, secondary toolbar](screenshots/IngeAnalisys.png)
 
+## Autoria e créditos
+
+A extensão é **obra de jufegofoto-cell**
+([github.com/jufegofoto-cell/IngeAnalisys](https://github.com/jufegofoto-cell/IngeAnalisys)),
+que transformou o app web *Análisis de Sitio 3D* em extensão do IngeTrazo.
+**Este repositório é um fork** com as modificações listadas abaixo e não
+reivindica o trabalho original: o projeto, o método e o crédito são dele.
+Detalhes de cada mudança e o aviso de licença: [`CREDITS.md`](CREDITS.md).
+
+O que este fork (1.9.0) acrescenta:
+
+- nove catálogos de idioma — pt-BR, es, en, de, it, fr, zh-CN, ru, ja
+  (`IngeAnalisys/i18n/`);
+- o código organizado em pastas — `tools/`, `i18n/`, `icons/`, um pacote com
+  `__init__.py` e `setup(app)`;
+- uma barra de ferramentas unificada com 19 botões e ícones SVG que seguem o
+  tema claro/escuro (`tools/toolbar.py`);
+- painéis flutuantes arrastáveis: informação e convenções, e a escala de cores
+  dos mapas de radiação e de sombra;
+- correções de atalhos de teclado e de carregamento de diálogos. Testado e
+  funcionando.
+
+Mantido por Ezequiel M. Rezende ([@em-rezende](https://github.com/em-rezende)).
+Projetos salvos na versão original abrem igual: as chaves dela
+(`analisis_sitio`, `group.ext["analisis_sitio"]`) continuam sendo lidas.
+
 ## Instalação
 
 **Pelo catálogo** (o caminho fácil): **Extensões ▸ Gerenciar extensões…**,

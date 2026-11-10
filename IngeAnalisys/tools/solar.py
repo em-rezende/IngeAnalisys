@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Solar diagram geometry — paths, analemmas, yearly band.
 
 The sun position comes from IngeTrazo itself (``core.sun``, NOAA

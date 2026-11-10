@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Weather from an EPW (EnergyPlus Weather) file.
 
 EPW reading, statistics for the analysis period, wind rose (16 sectors × 5

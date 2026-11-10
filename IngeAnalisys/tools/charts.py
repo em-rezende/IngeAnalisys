@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Climate charts: wind rose and monthly climate (QPainter).
 
 ``paint_rose`` / ``paint_months`` draw into any rectangle (the panel

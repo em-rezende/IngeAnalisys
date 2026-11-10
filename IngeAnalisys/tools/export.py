@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+# Modified 2026-11 by Ezequiel M. Rezende (@em-rezende): see CREDITS.md.
 """Outputs: view image with the analysis and climate charts.
 
 OBJ, SKP, DXF and IFC of the masses come from IngeTrazo (File ▸ Export):
