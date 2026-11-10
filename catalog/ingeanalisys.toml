@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Ficha do catálogo de extensões do IngeTrazo (ingetrazo-extensions).
+#
+# Como publicar (sem Git, pelo navegador):
+#   1. Suba este repositório para o GitHub e crie a TAG v1.9.0 no commit em
+#      que dist/IngeAnalisys.zip está (o download aponta para essa tag: o que
+#      for revisado não pode mudar depois).
+#   2. Em https://github.com/ingelibre/ingetrazo-extensions abra
+#      Add file ▸ Create new file dentro de extensions/ com o nome
+#      ingeanalisys.toml e cole este arquivo.
+#   3. Suba screenshots/ingeanalisys.jpg (ou .png) para a pasta screenshots/
+#      daquele repositório e abra o pull request.
+#
+# O SHA-256 tem de ser o do ZIP exato. Para recalcular depois de qualquer
+# mudança no plugin:
+#   python scripts/build_zip.py --update-catalog
+
+# Same as the file name: lowercase letters, digits and _.
+id = "ingeanalisys"
+version = "1.9.0"
+author = "Ezequiel M. Rezende"
+author_url = "https://github.com/em-rezende"
+
+# SPDX name of a free licence (LICENSE at the repository root).
+license = "GPL-3.0-or-later"
+
+# Where people read your code.
+repository = "https://github.com/em-rezende/IngeAnalisys"
+
+# The exact file IngeTrazo installs: here, the package ZIP built from the
+# IngeAnalisys folder (one folder with an __init__.py inside).
+download = "https://raw.githubusercontent.com/em-rezende/IngeAnalisys/v1.9.0/dist/IngeAnalisys.zip"
+# certutil -hashfile dist\IngeAnalisys.zip SHA256   (Linux/macOS: sha256sum)
+sha256 = "0a4834e5c6189d9bf997c189a4de1e5a645dc648173dc6b85b604865df58c279"
+
+# The IngeTrazo version it was tested with.
+ingetrazo = "0.6.1"
+
+# 1 to 4 of: architecture, bim, structures, terrain, drawing, analysis,
+# import-export, rendering, fabrication, productivity, education, other
+tags = ["architecture", "analysis", "terrain"]
+
+# A picture in screenshots/ of the catalog repository (under 600 KB).
+# Built here by: python scripts/make_screenshot.py
+screenshot = "ingeanalisys.jpg"
+
+# Spanish and English are required; Portuguese is welcome.
+[name]
+es = "Análisis de Sitio"
+en = "Site Analysis"
+pt = "Análise de Sítio"
+
+[summary]
+es = "Sol 3D, sombras reales, viento, clima EPW, radiación solar, contexto de OpenStreetMap, masas y lotes con áreas e índices, anotaciones y exportación PNG, todo sobre el propio modelo."
+en = "3D sun, real shadows, wind, EPW weather, solar radiation, OpenStreetMap context, masses and lots with areas and ratios, annotations and PNG export, all on the model itself."
+pt = "Sol 3D, sombras reais, vento, clima EPW, radiação solar, contexto do OpenStreetMap, massas e lotes com áreas e índices, anotações e exportação PNG, tudo no próprio modelo."

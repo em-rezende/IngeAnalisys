@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2026 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5.4186mm" height="5.4186mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 541.86 541.86"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:#FEFEFE;stroke-width:10;stroke-miterlimit:22.9256}
+    .str3 {stroke:#373435;stroke-width:10;stroke-miterlimit:22.9256}
+    .str0 {stroke:#FEFEFE;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .str1 {stroke:#373435;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil4 {fill:none}
+    .fil2 {fill:#D2D3D5}
+    .fil3 {fill:#848688}
+    .fil1 {fill:#373435}
+    .fil0 {fill:#84716B}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+   <polygon class="fil0" points="235.24,88.4 235.22,260.13 282.82,239.29 346.35,261.99 346.35,16.93 "/>
+   <polygon class="fil1" points="44.69,207.4 235.22,207.4 235.22,260.13 155.83,294.88 155.83,524.93 44.69,524.93 "/>
+   <polygon class="fil2" points="346.35,16.93 497.17,88.4 497.17,524.93 393.93,524.93 393.93,278.99 346.35,261.99 "/>
+   <polygon class="fil1" points="282.82,239.29 282.82,524.93 393.93,524.93 393.93,278.99 "/>
+   <polygon class="fil3" points="155.83,294.88 282.82,239.29 282.82,524.93 155.83,524.93 "/>
+   <path class="fil4 str0" d="M76.36 286.85l47.63 0m-47.63 190.51l47.63 0m-47.63 -47.62l47.63 0m-47.63 -47.64l47.63 0m-47.63 -47.62l47.63 0m-47.63 -95.27l47.63 0"/>
+   <path class="fil4 str1" d="M380.14 126.91l86.35 39.76m-86.35 58.88l86.35 33.01m-86.35 -82.32l86.35 34.7m-86.35 -131.67l86.35 38.07"/>
+   <line class="fil4 str2" x1="282.82" y1="239.29" x2="282.82" y2= "524.93" />
+   <line class="fil4 str2" x1="346.35" y1="261.99" x2="346.35" y2= "16.93" />
+   <line class="fil4 str2" x1="235.22" y1="207.4" x2="235.22" y2= "260.13" />
+   <polyline class="fil4 str2" points="155.83,524.93 155.83,294.88 282.82,239.29 393.93,278.99 393.93,524.93 "/>
+   <path class="fil4 str3" d="M44.69 524.93c150.83,0 301.65,0 452.48,0l0 -436.53 -150.82 -71.47 -111.11 71.47c0,39.67 -0.02,79.37 -0.02,119l-190.53 0 0 317.53z"/>
+  </g>
+ </g>
+</svg>

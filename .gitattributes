@@ -1,0 +1,20 @@
+# Keep the sources byte-for-byte the same on every machine: the catalog entry
+# carries the SHA-256 of a ZIP built from them (scripts/build_zip.py), so a
+# clone must give the same bytes the tag was made from — LF, never CRLF.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+LICENSE text eol=lf
+
+# The installable package and the pictures: never touch them.
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.cdr binary
+*.epw binary
