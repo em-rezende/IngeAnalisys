@@ -14,7 +14,8 @@ implementation — is the work of **jufegofoto-cell**
 is a modification made in a fork, and it is credited as such in `CREDITS.md`,
 in the docstring of `IngeAnalisys/__init__.py`, in the header of every module
 of the package and in the catalog entry (`author = "jufegofoto-cell"`). The
-original author was informed of these changes before publication.
+original author was informed of these changes before publication:
+<https://github.com/jufegofoto-cell/IngeAnalisys/issues/2>.
 
 ## 1.9.0 — first release as a catalog extension
 

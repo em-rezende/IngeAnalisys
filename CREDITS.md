@@ -11,7 +11,9 @@ here is claimed as work from scratch.
 | This fork, 1.9.0 — nine language catalogs, layout in `tools/` + `i18n/` + `icons/`, one 19-button toolbar with SVG icons, draggable floating panels, fixes to shortcuts and dialog loading, packaging for the extension catalog | Ezequiel M. Rezende — <https://github.com/em-rezende> |
 
 The original author was informed of these changes before anything was
-published: <!-- issue link -->
+published: <https://github.com/jufegofoto-cell/IngeAnalisys/issues/2>
+(issue #2 of the original repository, with the detailed list of changes and
+the question of how to be credited).
 
 ## Licence
 
