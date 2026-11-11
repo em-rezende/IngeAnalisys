@@ -52,6 +52,23 @@ Packaging and compatibility, so the extension can be installed by
 - `.gitignore`: `dist/IngeAnalisys.zip` is versioned on purpose (it is what
   the catalog downloads at the tag).
 
+## 1.9.2 — the two draggable panels, again
+
+The information/conventions box and the colour scale of the radiation and
+shade maps are draggable `FloatingBox` widgets again — one widget per box,
+created by the panel (`tools/panel.py`) and painted by the overlay's own
+`_notes()` / `_rad_legend()`, which now take the rectangle of the widget
+instead of the whole viewport.
+
+`Overlay.draw()` no longer paints them over the view: the boxes follow the
+mouse, so they are no longer tied to the corner chosen in section 12. The PNG
+export (`export=True`) still draws both, so an exported image carries them.
+
+`tools/data.py` is unchanged since 1.9.1: values are written and read under
+the name of the folder the extension is installed in, and the names they used
+to have (`.vista` / `.clima` / `.contexto`) are still read. The `ext_data()`
+fallback did not come back with the panels.
+
 ## 1.9.1 — the modules of the build that runs, again
 
 The previous release had rewritten five modules — `tools/data.py`,

@@ -61,6 +61,11 @@ stored under the *other* folder name (`IngeAnalisys` vs `ingeanalisys`) is
 not part of the code: a document is read when it was saved under the name of
 the folder the extension is installed in.
 
+Version 1.9.2 brings the two draggable panels back — `FloatingBox` in
+`tools/drawing.py`, shown by `tools/panel.py`, and the `rect` parameter of
+`_notes()` / `_rad_legend()` — without that fallback: `tools/data.py` is
+still the module of the build that runs.
+
 ## Contact
 
 - Bugs of **this fork**: <https://github.com/em-rezende/IngeAnalisys/issues>

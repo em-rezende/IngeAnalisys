@@ -56,7 +56,7 @@ import logging
 
 from .tools import i18n
 
-__version__ = "1.9.1"
+__version__ = "1.9.2"
 log = logging.getLogger("ingetrazo.plugins.analisis_sitio")
 
 

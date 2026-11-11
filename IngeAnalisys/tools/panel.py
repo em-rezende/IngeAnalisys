@@ -195,6 +195,8 @@ class SitePanel(QWidget):
         self._mass_rows = []
         self._geocoder = None
         self._osm = None
+        self._floating_notes = None
+        self._floating_scale = None
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
         scroll = QScrollArea()
@@ -1746,7 +1748,23 @@ class SitePanel(QWidget):
         if self._busy:
             return
         self.sitio.show_notes = bool(on)
-        self.app.viewport.update()
+        
+        if on:
+            if self._floating_notes is None:
+                from .drawing import FloatingBox
+                # Passa a função _notes do overlay como callback
+                self._floating_notes = FloatingBox(
+                    self.app.viewport, 
+                    draw_func=lambda p, r, ls: self.overlay._notes(
+                        p, self.app.viewport, self.sitio.store.view(), ls, rect=r)
+                )
+                self._floating_notes.setFixedSize(280, 350) # Ajuste o tamanho
+                self._floating_notes.move(50, 50)
+            self._floating_notes.show()
+            self._floating_notes.raise_()
+        else:
+            if self._floating_notes:
+                self._floating_notes.hide()
 
     def _ask_save(self, title, name, filt):
         path, _f = QFileDialog.getSaveFileName(self, title, name, filt)
@@ -2213,6 +2231,28 @@ class SitePanel(QWidget):
             self.pin_list.setCurrentRow(sel_row)
         finally:
             self._busy = False
+            
+        # ---- Atualiza o widget de escala flutuante (FORA do try/finally) ----
+        from . import radiation as rad
+        mapa_visivel = rad.visible_map(self.sitio.scene, self.sitio.store.key) is not None
+        quer_mostrar = (getattr(self, "legend_on", None) and self.legend_on.isChecked())
+        
+        if mapa_visivel and quer_mostrar:
+            if not hasattr(self, "_floating_scale") or self._floating_scale is None:
+                from .drawing import FloatingBox
+                self._floating_scale = FloatingBox(
+                    self.app.viewport,
+                    draw_func=lambda p, r, ls: self.overlay._rad_legend(
+                        p, self.app.viewport, self.sitio.store.view(), ls, rect=r)
+                )
+                self._floating_scale.setFixedSize(240, 300)
+                self._floating_scale.move(50, 420)
+            self._floating_scale.show()
+            self._floating_scale.raise_()
+        else:
+            if hasattr(self, "_floating_scale") and self._floating_scale is not None:
+                self._floating_scale.hide()
+
         self._fill_pin()
         self._refresh_climate()
         self._refresh_masses()
