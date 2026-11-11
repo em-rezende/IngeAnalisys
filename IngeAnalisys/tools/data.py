@@ -81,46 +81,6 @@ def default_content() -> dict:
     ]}
 
 
-#: Folder names this extension has answered to. IngeTrazo keys an
-#: extension's data by the name of its folder — the ``key`` of
-#: ``ExtensionApp`` and the stem in ``ingetrazo_plugin_<stem>`` — and the
-#: extension manager installs a package from the catalog as ``<id>``
-#: (``ingeanalisys``). A document made while the folder was called
-#: ``IngeAnalisys`` (copied by hand, as the README said) must keep opening
-#: after that, so the older names are READ as well; new values are always
-#: written under the current one.
-LEGACY_KEYS = ("IngeAnalisys", "analisis_sitio")
-
-#: ``<key><suffix>`` values that changed name along the way.
-_LEGACY_SUFFIXES = {".view": (".vista",), ".climate": (".clima",),
-                    ".context": (".contexto",)}
-
-
-def keys(key: str) -> tuple[str, ...]:
-    """The plugin's current key first, then the names it used to have."""
-    return (str(key), *[k for k in LEGACY_KEYS if k != key])
-
-
-def ext_data(group, key: str):
-    """``group.ext[key]`` — this extension's parameters for ``group``, also
-    when they were stored under an older name — or ``None`` when the group
-    is not ours. The dict is the one in ``group.ext`` (change it in place)."""
-    ext = getattr(group, "ext", None) or {}
-    for k in keys(key):
-        data = ext.get(k)
-        if isinstance(data, dict):
-            return data
-    return None
-
-
-def _suffix_keys(key: str, suffix: str) -> tuple[str, ...]:
-    names = []
-    for base in keys(key):
-        for s in (suffix, *_LEGACY_SUFFIXES.get(suffix, ())):
-            names.append(base + s)
-    return tuple(names)
-
-
 #: Legacy Spanish/Pt labels still seen in old .igz files.
 _LEGACY_WIND = {
     "Viento-Sur": "Wind-South",
@@ -170,6 +130,11 @@ def _merge(base: dict, raw) -> dict:
     return out
 
 
+#: Old plugin_data keys → new English ones (read once, transparently).
+_LEGACY_KEYS = {"vista": "view", "clima": "climate",
+                "contexto": "context"}
+
+
 class Store:
     """Access to the four document values for one extension."""
 
@@ -189,9 +154,14 @@ class Store:
 
     def _get(self, suffix: str, default=None):
         pd = self._pd()
-        for k in _suffix_keys(self.key, suffix):
-            if k in pd:
-                return pd[k]
+        k = self.key + suffix
+        if k in pd:
+            return pd[k]
+        for legacy, new in _LEGACY_KEYS.items():
+            if suffix == "." + new:
+                old = pd.get(self.key + "." + legacy)
+                if old is not None:
+                    return old
         return default
 
     def _set(self, suffix: str, value) -> None:
@@ -201,10 +171,16 @@ class Store:
     def view(self) -> dict:
         pd = self._pd()
         key = self.key + ".view"
-        merged = _merge(default_view(), self._get(".view"))
-        if pd.get(key) != merged:
+        cur = pd.get(key)
+        if cur is None:
+            for legacy in _LEGACY_KEYS:
+                if self.key + "." + legacy in pd:
+                    cur = pd[self.key + "." + legacy]
+                    break
+        merged = _merge(default_view(), cur)
+        if cur != merged:
             pd[key] = merged
-        return merged
+        return pd[key]
 
     def touch(self) -> None:
         """The view changed: mark the document modified and repaint."""
@@ -215,12 +191,6 @@ class Store:
     # ---- Content (undo) -----------------------------------------------------
     def content(self) -> dict:
         raw = self.app.document_data(None)
-        if raw is None:                  # written while under an older name
-            pd = self._pd()
-            for k in keys(self.key):
-                if k in pd:
-                    raw = pd[k]
-                    break
         if not isinstance(raw, dict):
             return default_content()
         out = default_content()

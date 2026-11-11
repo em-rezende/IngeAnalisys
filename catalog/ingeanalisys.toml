@@ -3,7 +3,7 @@
 # Ficha do catálogo de extensões do IngeTrazo (ingetrazo-extensions).
 #
 # Como publicar (sem Git, pelo navegador):
-#   1. Suba este repositório para o GitHub e crie a TAG v1.9.0 no commit em
+#   1. Suba este repositório para o GitHub e crie a TAG v1.9.1 no commit em
 #      que dist/IngeAnalisys.zip está (o download aponta para essa tag: o que
 #      for revisado não pode mudar depois).
 #   2. Em https://github.com/ingelibre/ingetrazo-extensions abra
@@ -18,7 +18,7 @@
 
 # Same as the file name: lowercase letters, digits and _.
 id = "ingeanalisys"
-version = "1.9.0"
+version = "1.9.1"
 
 # AUTORIA: a extensão é de jufegofoto-cell (ver CREDITS.md). Este campo é o
 # que aparece como autor no catálogo; o mantenedor das modificações é
@@ -38,9 +38,9 @@ repository = "https://github.com/em-rezende/IngeAnalisys"
 
 # The exact file IngeTrazo installs: here, the package ZIP built from the
 # IngeAnalisys folder (one folder with an __init__.py inside).
-download = "https://raw.githubusercontent.com/em-rezende/IngeAnalisys/v1.9.0/dist/IngeAnalisys.zip"
+download = "https://raw.githubusercontent.com/em-rezende/IngeAnalisys/v1.9.1/dist/IngeAnalisys.zip"
 # certutil -hashfile dist\IngeAnalisys.zip SHA256   (Linux/macOS: sha256sum)
-sha256 = "2b0ed3d4d3925e74113accdaeb16a9ed157c5c77262fa5f962858348edc8f0e5"
+sha256 = "efa2e512199314c8bd89cb0519dccbd6831103260ef8eeaa238b0f787d1cb138"
 
 # The IngeTrazo version it was tested with.
 ingetrazo = "0.6.1"
@@ -67,6 +67,6 @@ pt = "Sol 3D, sombras reais, vento, clima EPW, radiação solar, contexto do Ope
 # Optional, up to 2000 characters per language; the page shows it on the
 # extension's own page. Here: authorship, which is the point of this entry.
 [description]
-es = """Extensión original de jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), que convirtió la app web «Análisis de Sitio 3D» en una extensión de IngeTrazo. Esta versión (1.9.0) es un fork mantenido por @em-rezende, con su autoría y su crédito intactos: añade internacionalización a nueve idiomas (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), reorganiza el código en carpetas (tools/, i18n/, icons/), reúne todo en una barra de herramientas de 19 botones con iconos SVG, añade paneles flotantes arrastrables (información y escala del mapa) y corrige atajos de teclado y la carga de diálogos. Los .igz hechos con la versión original se abren igual, porque se siguen leyendo sus claves. Licencia GPL-3.0-or-later. Detalles del crédito y de cada cambio: CREDITS.md en el repositorio."""
-en = """Original extension by jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), who turned the «Análisis de Sitio 3D» web app into an IngeTrazo extension. This version (1.9.0) is a fork maintained by @em-rezende, with the original authorship and credit kept intact: it adds nine language catalogs (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), lays the code out in folders (tools/, i18n/, icons/), gathers every command in one 19-button toolbar with SVG icons, adds draggable floating panels (information, map scale) and fixes keyboard shortcuts and dialog loading. Projects made with the original version open the same way, because its data keys are still read. GPL-3.0-or-later. Credit and every change: CREDITS.md in the repository."""
-pt = """Extensão original de jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), que transformou o app web «Análisis de Sitio 3D» em extensão do IngeTrazo. Esta versão (1.9.0) é um fork mantido por @em-rezende, com a autoria e o crédito originais preservados: acrescenta internacionalização para nove idiomas (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), organiza o código em pastas (tools/, i18n/, icons/), reúne tudo em uma barra de ferramentas de 19 botões com ícones SVG, acrescenta painéis flutuantes arrastáveis (informação e escala do mapa) e corrige atalhos de teclado e o carregamento de diálogos. Projetos feitos na versão original abrem igual, porque as chaves dela continuam sendo lidas. Licença GPL-3.0-or-later. Crédito e cada mudança: CREDITS.md no repositório."""
+es = """Extensión original de jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), que convirtió la app web «Análisis de Sitio 3D» en una extensión de IngeTrazo. Esta versión (1.9.1) es un fork mantenido por @em-rezende, con su autoría y su crédito intactos: añade internacionalización a nueve idiomas (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), reorganiza el código en carpetas (tools/, i18n/, icons/), reúne todo en una barra de herramientas de 19 botones con iconos SVG y corrige atajos de teclado y la carga de diálogos. Los .igz hechos con la versión original se abren igual, porque se siguen leyendo sus claves. Licencia GPL-3.0-or-later. Detalles del crédito y de cada cambio: CREDITS.md en el repositorio."""
+en = """Original extension by jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), who turned the «Análisis de Sitio 3D» web app into an IngeTrazo extension. This version (1.9.1) is a fork maintained by @em-rezende, with the original authorship and credit kept intact: it adds nine language catalogs (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), lays the code out in folders (tools/, i18n/, icons/), gathers every command in one 19-button toolbar with SVG icons and fixes keyboard shortcuts and dialog loading. Projects made with the original version open the same way, because its data keys are still read. GPL-3.0-or-later. Credit and every change: CREDITS.md in the repository."""
+pt = """Extensão original de jufegofoto-cell (https://github.com/jufegofoto-cell/IngeAnalisys), que transformou o app web «Análisis de Sitio 3D» em extensão do IngeTrazo. Esta versão (1.9.1) é um fork mantido por @em-rezende, com a autoria e o crédito originais preservados: acrescenta internacionalização para nove idiomas (pt-BR, es, en, de, it, fr, zh-CN, ru, ja), organiza o código em pastas (tools/, i18n/, icons/), reúne tudo em uma barra de ferramentas de 19 botões com ícones SVG e corrige atalhos de teclado e o carregamento de diálogos. Projetos feitos na versão original abrem igual, porque as chaves dela continuam sendo lidas. Licença GPL-3.0-or-later. Crédito e cada mudança: CREDITS.md no repositório."""

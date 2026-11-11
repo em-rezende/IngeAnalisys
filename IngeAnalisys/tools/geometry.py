@@ -21,7 +21,6 @@ import math
 import numpy as np
 from PySide6.QtGui import QVector3D
 
-from .data import ext_data
 from .i18n import tr, translate_layer
 
 # Canonical (English) layer names — stored on the scene, displayed via
@@ -198,8 +197,9 @@ def layer_label(canonical: str) -> str:
 # ---- Masses -----------------------------------------------------------------
 
 def mass_params(group, key: str):
-    data = ext_data(group, key)
-    return data if data is not None and "pts" in data else None
+    ext = getattr(group, "ext", None) or {}
+    data = ext.get(key)
+    return data if isinstance(data, dict) and "pts" in data else None
 
 
 def normalize_mass(p: dict) -> dict:

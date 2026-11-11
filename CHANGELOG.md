@@ -52,6 +52,33 @@ Packaging and compatibility, so the extension can be installed by
 - `.gitignore`: `dist/IngeAnalisys.zip` is versioned on purpose (it is what
   the catalog downloads at the tag).
 
+## 1.9.1 — the modules of the build that runs, again
+
+The previous release had rewritten five modules — `tools/data.py`,
+`tools/drawing.py`, `tools/geometry.py`, `tools/panel.py` and
+`tools/radiation.py` — with three changes that stopped the extension from
+working:
+
+- `Store.view()` returned a **copy** of the view instead of the dict kept in
+  `plugin_data`, so the panel changed the colours, radii and checkboxes of a
+  copy and every change was lost on the next repaint;
+- a `data.ext_data()` fallback read the parameters of a group under several
+  names;
+- the information and the colour-scale boxes became draggable
+  `FloatingBox` widgets.
+
+All five are back to the modules of the build that runs — byte for byte, plus
+the credit line every file carries — so there is no `ext_data()`, no
+`FloatingBox`, and `Store.view()` returns the stored dict again.
+`scripts/check_plugin.py` now checks the names the values used to have
+(`.vista` / `.clima` / `.contexto`) instead of `ext_data()`. The ZIP was
+rebuilt (the catalogue's `sha256` follows it).
+
+What a project saved through the *other* installation route does lose: values
+are written and read under the name of the folder the extension is installed
+in, so a document saved while the folder was called `IngeAnalisys` is not
+read by an installation called `ingeanalisys`.
+
 ## 1.8.x and earlier
 
 Feature work before the catalog: 3D solar diagram, real shadows, EPW

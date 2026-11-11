@@ -45,8 +45,10 @@ Installation (docs/plugins.md — a package folder with ``__init__.py``):
 
 The manager installs a catalog package under the catalog id
 (``ingeanalisys``), so ``app.key`` — the name the document keeps its data
-under — differs between the two routes: ``tools/data.py`` reads the values
-of both, so a project made with either keeps opening.
+under — is the name of the folder the package is installed in. Values are
+written under that name, and the names they used to have (``.vista`` /
+``.clima`` / ``.contexto``) are still read, so a project of the original
+keeps opening.
 """
 from __future__ import annotations
 
@@ -54,7 +56,7 @@ import logging
 
 from .tools import i18n
 
-__version__ = "1.9.0"
+__version__ = "1.9.1"
 log = logging.getLogger("ingetrazo.plugins.analisis_sitio")
 
 

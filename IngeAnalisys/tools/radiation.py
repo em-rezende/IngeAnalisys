@@ -36,7 +36,6 @@ import numpy as np
 from core.sun import solar_position
 
 from . import solar
-from .data import ext_data
 from .i18n import tr
 
 YEAR = solar.YEAR
@@ -543,8 +542,8 @@ def kind_title(kind: str) -> str:
 
 def find_group(scene, key: str, kind: str = "radiation"):
     for g in scene.groups:
-        data = ext_data(g, key)
-        if data is not None and data.get("kind") == kind:
+        ext = getattr(g, "ext", None) or {}
+        if isinstance(ext.get(key), dict) and ext[key].get("kind") == kind:
             return g
     return None
 
@@ -603,7 +602,7 @@ def build_group(key: str, targets: Targets, res: dict, mode: str,
 
 
 def value_range(g, key: str) -> tuple[float, float]:
-    vals = (ext_data(g, key) or {}).get("values") or [0.0]
+    vals = (g.ext.get(key) or {}).get("values") or [0.0]
     return float(min(vals)), float(max(vals))
 
 
@@ -667,7 +666,7 @@ def shown_values(data: dict) -> np.ndarray:
 
 def paint(g, key: str) -> bool:
     """Color the map faces with the stored palette and scale."""
-    data = ext_data(g, key) or {}
+    data = g.ext.get(key) or {}
     vals = data.get("values") or []
     faces = list(g.mesh.faces)
     if len(vals) != len(faces):
@@ -945,10 +944,7 @@ def recolor(sitio, kind: str = "radiation", **changes) -> bool:
     g = find_group(sitio.scene, sitio.store.key, kind)
     if g is None:
         return False
-    data = ext_data(g, sitio.store.key)
-    if data is None:                     # cannot happen: find_group found it
-        return False
-    data.update(changes)
+    g.ext[sitio.store.key].update(changes)
     ok = paint(g, sitio.store.key)
     sitio.scene.version += 1
     notify = getattr(sitio.app.viewport, "notify_scene_changed", None)

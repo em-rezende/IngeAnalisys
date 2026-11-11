@@ -22,7 +22,7 @@ from PySide6.QtGui import (QBrush, QColor, QFont, QFontMetricsF, QPainter,
                            QPainterPath, QPen, QPolygonF, QRadialGradient)
 
 from . import climate, solar
-from .data import ext_data, pin_label_text, wind_label_text
+from .data import pin_label_text, wind_label_text
 from .i18n import tr
 
 MONTHS = climate.MONTHS_EN
@@ -273,12 +273,10 @@ class Overlay:
         # Floating panels, top right: the info & legend one (checkbox in
         # section 12), and below it the radiation / shadows scale (checkbox
         # in section 11). Exported images carry them if visible.
-        # Painéis desenhados apenas na exportação de imagem
-        if export:
-            notes_box = None
-            if getattr(self.sitio, "show_notes", False):
-                notes_box = self._notes(painter, viewport, view, ls)
-            self._rad_legend(painter, viewport, view, ls, notes_box)
+        notes_box = None
+        if getattr(self.sitio, "show_notes", False):
+            notes_box = self._notes(painter, viewport, view, ls)
+        self._rad_legend(painter, viewport, view, ls, notes_box)
 
     # Compass and rings ------------------------------------------------------
     def _compass(self, painter, P, sky, color, ls) -> None:
@@ -632,7 +630,7 @@ class Overlay:
             return
 
     # Radiation scale --------------------------------------------------------
-    def _rad_legend(self, painter, viewport, view, ls, notes_box=None, rect=None) -> None:
+    def _rad_legend(self, painter, viewport, view, ls, notes_box=None) -> None:
         from . import radiation as rad
         st = self.sitio
         if not view.get("rad", {}).get("legend", True):
@@ -640,7 +638,7 @@ class Overlay:
         g = rad.visible_map(st.scene, st.store.key)
         if g is None:
             return
-        data = ext_data(g, st.store.key) or {}
+        data = g.ext.get(st.store.key) or {}
         shadows = data.get("kind") == "shadows"
         pal = rad.scale(data)["palette"]
         pad, bw, bh = 12 * ls, 18 * ls, 230 * ls
@@ -660,8 +658,6 @@ class Overlay:
         width = max(width, fm.horizontalAdvance(unit) + 2 * pad)
         height = pad + 18 * ls + 14 * ls + bh + 14 * ls + 2 * 14 * ls + pad
         W, H = viewport.width(), viewport.height()
-        if rect is not None:
-            W, H = int(rect.width()), int(rect.height())
         x, y = W - width - 14, 14
         if notes_box is not None and notes_box.right() > x and notes_box.top() < 40:
             if notes_box.bottom() + 10 + height <= H - 14:
@@ -737,7 +733,7 @@ class Overlay:
             cy += 14 * ls
 
     # Notes ------------------------------------------------------------------
-    def _notes(self, painter, viewport, view, ls, rect=None):
+    def _notes(self, painter, viewport, view, ls):
         rows = notes_rows(self.sitio)
         if not rows:
             return
@@ -759,8 +755,6 @@ class Overlay:
                 total += heights[r["t"]]
         total += pad - 4
         W, H = viewport.width(), viewport.height()
-        if rect is not None:
-            W, H = int(rect.width()), int(rect.height())
         corner = view["view"].get("notes_corner", "tr")
         x = W - width - 14 if corner.endswith("r") else 14
         y = 14 if corner.startswith("t") else H - total - 14
@@ -1010,42 +1004,3 @@ def legend_rows(sitio, counts: bool = False) -> list[dict]:
         rows.append({"sym": "pin", "c": view["annot"]["color"],
                      "s": tr("Annotations")})
     return rows
-
-# =========================================================================
-# JANELA FLUTUANTE ARRASTÁVEL
-# =========================================================================
-from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Qt, QRectF
-from PySide6.QtGui import QPainter
-
-class FloatingBox(QWidget):
-    """Janela flutuante arrastável que desenha um conteúdo customizado."""
-    def __init__(self, parent=None, draw_func=None):
-        super().__init__(parent)
-        self.setAttribute(Qt.WA_TransparentForMouseEvents, False)
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setMouseTracking(True)
-        self._drag_pos = None
-        self._draw_func = draw_func  # função que recebe (painter, rect, ls)
-
-    def paintEvent(self, event):
-        if self._draw_func is None:
-            return
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)
-        # Chama a função de desenho original, passando o rect do widget
-        self._draw_func(painter, QRectF(self.rect()), 1.0)
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-            event.accept()
-
-    def mouseMoveEvent(self, event):
-        if self._drag_pos and event.buttons() & Qt.LeftButton:
-            self.move(event.globalPosition().toPoint() - self._drag_pos)
-            event.accept()
-
-    def mouseReleaseEvent(self, event):
-        self._drag_pos = None
-        event.accept()

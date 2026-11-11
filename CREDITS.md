@@ -46,17 +46,20 @@ map of the site on the model itself, without touching IngeTrazo's core.
 
 ## Compatibility with documents of the original
 
-The document keys of the original are still **read**, so a project saved with
-`analisis_sitio` opens here with its masses, radiation maps, pins, winds, EPW
-and view settings:
+Values are written under the name of the folder the extension is installed
+in, because that is how IngeTrazo keys an extension's data, and the names a
+value used to have are still read — so a project of the original opens here
+with its masses, radiation maps, pins, winds, EPW and view settings:
 
-- `plugin_data["analisis_sitio"]` (and `analisis_sitio.vista`, `.clima`,
-  `.contexto`);
-- `group.ext["analisis_sitio"]`.
+- `plugin_data["<key>.vista"]` / `.clima` / `.contexto` are read as
+  `.view` / `.climate` / `.context`;
+- the parameters of a mass or of a map are read from `group.ext["<key>"]`.
 
-See `IngeAnalisys/tools/data.py` (`LEGACY_KEYS`, `ext_data()`). New data is
-written under the name of the folder the extension is installed in, because
-that is how IngeTrazo keys an extension's data.
+See `IngeAnalisys/tools/data.py` (`_LEGACY_KEYS`). Version 1.9.1 went back to
+the modules of the build that runs, so the fallback that also read the values
+stored under the *other* folder name (`IngeAnalisys` vs `ingeanalisys`) is
+not part of the code: a document is read when it was saved under the name of
+the folder the extension is installed in.
 
 ## Contact
 

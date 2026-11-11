@@ -180,7 +180,7 @@ class _Scene:
 
 
 class _App:
-    """A host whose data was written under the OLD folder name."""
+    """The parts of the host the store touches, and nothing else."""
 
     key = "ingeanalisys"
 
@@ -193,37 +193,35 @@ class _App:
 
 
 def check_data_keys(mod) -> None:
-    """A project saved while the folder was called ``IngeAnalisys`` must
-    keep opening once the manager installs the package as ``ingeanalisys``
-    (the catalog id): the store and the group parameters read both."""
+    """A project saved with the old value names (``.vista`` / ``.clima`` /
+    ``.contexto``) must keep opening: the store reads them and writes the
+    values under the current names (``.view`` / ``.climate`` /
+    ``.context``)."""
     data = importlib.import_module(f"{mod.__name__}.tools.data")
     scene = _Scene({
-        "IngeAnalisys": {"pins": [{"id": "p1"}], "winds": []},
-        "IngeAnalisys.view": {"on": True, "radius": 55.0},
-        "IngeAnalisys.climate": {"header": "legacy"},
-        "IngeAnalisys.context": {"buildings": [{"id": 7}], "group": None},
+        "ingeanalisys": {"pins": [{"id": "p1"}], "winds": []},
+        "ingeanalisys.vista": {"on": True, "radius": 55.0},
+        "ingeanalisys.clima": {"header": "legacy"},
+        "ingeanalisys.contexto": {"buildings": [{"id": 7}], "group": None},
     })
     store = data.Store(_App(scene))
     if store.content()["pins"] != [{"id": "p1"}]:
-        problem("content written under an older plugin name is not read")
+        problem("content in the document is not read")
     view = store.view()
     if view.get("radius") != 55.0 or not view.get("on"):
-        problem("view written under an older plugin name is not read")
+        problem("a view saved as .vista is not read")
     if store.climate() != {"header": "legacy"}:
-        problem("climate written under an older plugin name is not read")
+        problem("a climate saved as .clima is not read")
     if store.context()["buildings"] != [{"id": 7}]:
-        problem("context written under an older plugin name is not read")
+        problem("a context saved as .contexto is not read")
 
     class _Group:
-        ext = {"IngeAnalisys": {"pts": [(0, 0), (1, 0), (1, 1)], "h": 6.0}}
+        ext = {"ingeanalisys": {"pts": [(0, 0), (1, 0), (1, 1)], "h": 6.0}}
 
-    group = _Group()
-    if data.ext_data(group, "ingeanalisys") is not group.ext["IngeAnalisys"]:
-        problem("ext_data() does not fall back to an older plugin name")
     geometry = importlib.import_module(f"{mod.__name__}.tools.geometry")
-    if geometry.mass_params(group, "ingeanalisys") is None:
-        problem("a mass of an older document is not recognised")
-    notes.append("data written under the old folder name is read")
+    if geometry.mass_params(_Group(), "ingeanalisys") is None:
+        problem("a mass group is not recognised")
+    notes.append("the old .vista/.clima/.contexto values are still read")
 
 
 
