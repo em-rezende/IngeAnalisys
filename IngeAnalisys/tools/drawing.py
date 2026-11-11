@@ -17,7 +17,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
-from PySide6.QtCore import QPointF, QRectF, Qt
+from PySide6.QtCore import QEvent, QPointF, QRectF, Qt
 from PySide6.QtGui import (QBrush, QColor, QFont, QFontMetricsF, QPainter,
                            QPainterPath, QPen, QPolygonF, QRadialGradient)
 
@@ -442,8 +442,8 @@ class Overlay:
                t, anim, ls) -> None:
         R = fr.r
         o = math.radians(d)
-        cx, cy = fr.grid_to_local(math.sin(o), math.cos(o))      # toward the wind origin
-        lx, ly = fr.grid_to_local(math.cos(o), -math.sin(o))     # transversal
+        cx, cy = fr.grid_to_local(math.sin(o), math.cos(o))
+        lx, ly = fr.grid_to_local(math.cos(o), -math.sin(o))
         c, l = np.array([cx, cy]), np.array([lx, ly])
         width = (0.01 + min(speed, 10.0) * 0.004) * R * float(wv.get("width", 1))
         z = fr.cz + float(wv.get("height", 8.0))
@@ -473,8 +473,6 @@ class Overlay:
     @staticmethod
     def _ribbon(painter, P, center, z, ctrl, hw, base, phase, opa, t,
                 anim) -> None:
-        """Flow ribbon: widens, ends in an arrow tip and pulses along (like
-        the web app shader)."""
         A, B, C, D = ctrl
         prof = [(k / 48 * 0.8, hw * (0.25 + 0.75 * min(1.0, k / 48 * 0.8 / 0.45)))
                 for k in range(49)]
@@ -581,7 +579,7 @@ class Overlay:
             r = max(7.0, min(26.0, P.pixel_size(top, st["size"] / 2.0)))
             icon = pin.get("icon") or ""
             if icon and not _has_glyph(icon, r * 1.15):
-                icon = ""                       # no font for that icon
+                icon = ""
             if st["bg"]:
                 painter.setPen(QPen(qcolor(st["color"]), 2.0))
                 painter.setBrush(qcolor(st["bg_color"], 0.92))
@@ -655,17 +653,20 @@ class Overlay:
                     + 2 * pad)
         width = max(width, fm.horizontalAdvance(unit) + 2 * pad)
         height = pad + 18 * ls + 14 * ls + bh + 14 * ls + 2 * 14 * ls + pad
-        W, H = viewport.width(), viewport.height()
+        # Quando desenhando dentro de um FloatingBox (rect != None),
+        # reservamos margem à esquerda e ignoramos o cálculo do canto.
         if rect is not None:
-            W, H = int(rect.width()), int(rect.height())
-        x, y = W - width - 14, 14
-        if notes_box is not None and notes_box.right() > x and notes_box.top() < 40:
-            if notes_box.bottom() + 10 + height <= H - 14:
-                y = notes_box.bottom() + 10
-                width = max(width, notes_box.width())
-                x = notes_box.right() - width
-            else:
-                x = notes_box.left() - width - 10
+            x, y = 8.0, 8.0
+        else:
+            W, H = viewport.width(), viewport.height()
+            x, y = W - width - 14, 14
+            if notes_box is not None and notes_box.right() > x and notes_box.top() < 40:
+                if notes_box.bottom() + 10 + height <= H - 14:
+                    y = notes_box.bottom() + 10
+                    width = max(width, notes_box.width())
+                    x = notes_box.right() - width
+                else:
+                    x = notes_box.left() - width - 10
         painter.setPen(QPen(QColor(255, 255, 255, 40), 1.0))
         painter.setBrush(QColor(11, 18, 32, 215))
         painter.drawRoundedRect(QRectF(x, y, width, height), 8, 8)
@@ -730,6 +731,7 @@ class Overlay:
             painter.drawText(QRectF(x + pad, cy, width - 2 * pad, 14 * ls),
                              Qt.AlignLeft | Qt.AlignVCenter, t)
             cy += 14 * ls
+        return QRectF(x, y, width, height)
 
     # Notes ------------------------------------------------------------------
     def _notes(self, painter, viewport, view, ls, rect=None):
@@ -753,12 +755,13 @@ class Overlay:
             else:
                 total += heights[r["t"]]
         total += pad - 4
-        W, H = viewport.width(), viewport.height()
         if rect is not None:
-            W, H = int(rect.width()), int(rect.height())
-        corner = view["view"].get("notes_corner", "tr")
-        x = W - width - 14 if corner.endswith("r") else 14
-        y = 14 if corner.startswith("t") else H - total - 14
+            x, y = 8.0, 8.0
+        else:
+            W, H = viewport.width(), viewport.height()
+            corner = view["view"].get("notes_corner", "tr")
+            x = W - width - 14 if corner.endswith("r") else 14
+            y = 14 if corner.startswith("t") else H - total - 14
         box = QRectF(x, y, width, total)
         painter.setPen(QPen(QColor(255, 255, 255, 40), 1.0))
         painter.setBrush(QColor(11, 18, 32, 215))
@@ -1003,29 +1006,103 @@ def legend_rows(sitio, counts: bool = False) -> list[dict]:
 # JANELA FLUTUANTE ARRASTÁVEL
 # =========================================================================
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Qt, QRectF
-from PySide6.QtGui import QPainter
+
 
 class FloatingBox(QWidget):
-    """Janela flutuante arrastável que desenha um conteúdo customizado."""
-    def __init__(self, parent=None, draw_func=None):
+    """Janela flutuante arrastável que desenha um conteúdo customizado.
+
+    - ``draw_func(painter, rect, ls)`` — responsável pelo desenho.
+    - ``label_scale`` — *callable* que devolve o ``label_scale`` atual
+      (lido a cada ``paintEvent``; mudanças no painel aparecem na hora).
+    - ``anchor`` — canto de ancoragem usado quando a viewport é
+      redimensionada: ``"tl"``, ``"tr"``, ``"bl"`` ou ``"br"``.
+    """
+
+    def __init__(self, parent=None, draw_func=None, label_scale=None,
+                 anchor="tl"):
         super().__init__(parent)
         self.setAttribute(Qt.WA_TransparentForMouseEvents, False)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
         self._drag_pos = None
-        self._draw_func = draw_func  # função que recebe (painter, rect, ls)
+        self._draw_func = draw_func
+        self._label_scale = label_scale
+        self._anchor = anchor
+        self._margin = 20
+        if parent is not None:
+            parent.installEventFilter(self)
 
+    # ---- conteúdo -----------------------------------------------------------
+    def _current_ls(self) -> float:
+        if self._label_scale is None:
+            return 1.0
+        try:
+            return float(self._label_scale())
+        except Exception:
+            return 1.0
+
+    def resize_to_content(self) -> None:
+        """Pede à função de desenho o tamanho natural do conteúdo e se
+        dimensiona com uma margem extra."""
+        if self._draw_func is None:
+            return
+        from PySide6.QtGui import QPixmap
+        tmp = QPixmap(1, 1)
+        tmp.fill(Qt.transparent)
+        p = QPainter(tmp)
+        try:
+            rect = self._draw_func(p, QRectF(0, 0, 4000, 4000), self._current_ls())
+        finally:
+            p.end()
+        if rect is not None and rect.width() > 0 and rect.height() > 0:
+            self.setFixedSize(int(rect.width()) + 24, int(rect.height()) + 24)
+            self._reposition()
+
+    # ---- pintura ------------------------------------------------------------
     def paintEvent(self, event):
         if self._draw_func is None:
             return
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
-        self._draw_func(painter, QRectF(self.rect()), 1.0)
+        self._draw_func(painter, QRectF(self.rect()), self._current_ls())
 
+    # ---- posicionamento -----------------------------------------------------
+    def _reposition(self) -> None:
+        p = self.parent()
+        if p is None:
+            return
+        pw, ph = p.width(), p.height()
+        w, h = self.width(), self.height()
+        m = self._margin
+        if self._anchor == "tr":
+            self.move(pw - w - m, m)
+        elif self._anchor == "bl":
+            self.move(m, ph - h - m)
+        elif self._anchor == "br":
+            self.move(pw - w - m, ph - h - m)
+        else:                                  # "tl"
+            self.move(m, m)
+
+    def eventFilter(self, obj, event):
+        if obj is self.parent() and event.type() == QEvent.Resize:
+            self._reposition()
+        return super().eventFilter(obj, event)
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        # Se a posição atual ainda não foi definida (0,0 ou fora do pai),
+        # recoloca no canto ancorado.
+        p = self.parent()
+        if p is not None:
+            x, y = self.x(), self.y()
+            if x <= 0 and y <= 0:
+                self._reposition()
+
+    # ---- arrastar -----------------------------------------------------------
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self._drag_pos = (event.globalPosition().toPoint()
+                              - self.frameGeometry().topLeft())
             event.accept()
 
     def mouseMoveEvent(self, event):

@@ -40,7 +40,7 @@ repository = "https://github.com/em-rezende/IngeAnalisys"
 # IngeAnalisys folder (one folder with an __init__.py inside).
 download = "https://raw.githubusercontent.com/em-rezende/IngeAnalisys/v1.9.2/dist/IngeAnalisys.zip"
 # certutil -hashfile dist\IngeAnalisys.zip SHA256   (Linux/macOS: sha256sum)
-sha256 = "656c5eece4a9c6dfb77ee5be5d63fc193a0baaf5b9244c156aecbf22d5edb030"
+sha256 = "e631bfdd788ca347e89bcf6e9128de5d6b4237df4b9c25b389b9472b6111551e"
 
 # The IngeTrazo version it was tested with.
 ingetrazo = "0.6.1"

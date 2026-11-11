@@ -421,25 +421,25 @@ final.
 
 | Seção | Ícone | Tooltip | Ação | Atalho |
 |---|---|---|---|---|
-| 1  | <img src="icons/epw_light.svg" width="22">        | Abrir EPW…                       | `panel._on_open_epw()`            | `Shift+Y`     |
-| 2  | <img src="icons/pin_light.svg" width="22">        | Escolher localização no mapa…    | `panel._on_pick_map()`            | `Shift+K`     |
-| 3  | <img src="icons/north_light.svg" width="22">      | Definir norte da aresta          | `panel._on_pick_north_edge()`     | `Shift+C`     |
-| 4  | <img src="icons/eye_light.svg" width="22">        | Mostrar / ocultar a análise      | `act.toggle_analysis(sitio)`      | `Shift+H`     |
-| 4  | <img src="icons/play_light.svg" width="22">       | Animar a trajetória solar        | `panel._on_anim()`                | `Shift+Space` |
-| 5  | <img src="icons/wind_light.svg" width="22">       | Aplicar ventos dominantes (EPW)  | `panel._on_dominant()`            | `Shift+W`     |
-| 6  | <img src="icons/chart_light.svg" width="22">      | Salvar gráficos do clima (PNG)…  | `panel._on_save_charts()`         | `Shift+G`     |
-| 7  | <img src="icons/basemap_light.svg" width="22">    | Baixar mapa base                 | `panel._on_basemap()`             | `Shift+B`     |
-| 7  | <img src="icons/osm_light.svg" width="22">        | Carregar edificações do OSM      | `panel._on_osm()`                 | `Shift+O`     |
-| 7  | <img src="icons/osm_off_light.svg" width="22">    | Remover contexto OSM             | `act.set_context(sitio, None, …)` | `Shift+Delete`|
-| 8  | <img src="icons/mass_light.svg" width="22">       | Massa a partir das faces         | `panel._make_masses("mass")`      | `Shift+M`     |
-| 8  | <img src="icons/lot_light.svg" width="22">        | Lote a partir das faces          | `panel._make_masses("lot")`       | `Shift+L`     |
-| 9  | <img src="icons/star_light.svg" width="22">       | Anotar com o ícone selecionado   | `panel._place_pin(True)`          | `Shift+A`     |
-| 10 | <img src="icons/view_top_light.svg" width="22">   | Vista em planta                  | `panel.set_view("top")`           | `Shift+5`     |
-| 10 | <img src="icons/fit_light.svg" width="22">        | Enquadrar o sítio                | `panel.set_view("fit")`           | `Shift+0`     |
-| 11 | <img src="icons/sun_light.svg" width="22">        | Calcular radiação                | `panel._on_rad()`                 | `Shift+R`     |
-| 12 | <img src="icons/export_light.svg" width="22">     | Exportar PNG…                    | `panel._on_png()`                 | `Shift+E`     |
-| 12 | <img src="icons/info_light.svg" width="22">       | Mostrar / ocultar painel de informação | `panel._on_notes(checked)`  | `Shift+I`     |
-| —  | <img src="icons/panel_light.svg" width="22">      | Mostrar / ocultar o painel de análise | `app.show_panel(dock)` / `dock.hide()` | `Shift+P` |
+| 1  | <img src="IngeAnalisys/icons/epw_light.svg" width="22">        | Abrir EPW…                       | `panel._on_open_epw()`            | `Shift+Y`     |
+| 2  | <img src="IngeAnalisys/icons/pin_light.svg" width="22">        | Escolher localização no mapa…    | `panel._on_pick_map()`            | `Shift+K`     |
+| 3  | <img src="IngeAnalisys/icons/north_light.svg" width="22">      | Definir norte da aresta          | `panel._on_pick_north_edge()`     | `Shift+C`     |
+| 4  | <img src="IngeAnalisys/icons/eye_light.svg" width="22">        | Mostrar / ocultar a análise      | `act.toggle_analysis(sitio)`      | `Shift+H`     |
+| 4  | <img src="IngeAnalisys/icons/play_light.svg" width="22">       | Animar a trajetória solar        | `panel._on_anim()`                | `Shift+Space` |
+| 5  | <img src="IngeAnalisys/icons/wind_light.svg" width="22">       | Aplicar ventos dominantes (EPW)  | `panel._on_dominant()`            | `Shift+W`     |
+| 6  | <img src="IngeAnalisys/icons/chart_light.svg" width="22">      | Salvar gráficos do clima (PNG)…  | `panel._on_save_charts()`         | `Shift+G`     |
+| 7  | <img src="IngeAnalisys/icons/basemap_light.svg" width="22">    | Baixar mapa base                 | `panel._on_basemap()`             | `Shift+B`     |
+| 7  | <img src="IngeAnalisys/icons/osm_light.svg" width="22">        | Carregar edificações do OSM      | `panel._on_osm()`                 | `Shift+O`     |
+| 7  | <img src="IngeAnalisys/icons/osm_off_light.svg" width="22">    | Remover contexto OSM             | `act.set_context(sitio, None, …)` | `Shift+Delete`|
+| 8  | <img src="IngeAnalisys/icons/mass_light.svg" width="22">       | Massa a partir das faces         | `panel._make_masses("mass")`      | `Shift+M`     |
+| 8  | <img src="IngeAnalisys/icons/lot_light.svg" width="22">        | Lote a partir das faces          | `panel._make_masses("lot")`       | `Shift+L`     |
+| 9  | <img src="IngeAnalisys/icons/star_light.svg" width="22">       | Anotar com o ícone selecionado   | `panel._place_pin(True)`          | `Shift+A`     |
+| 10 | <img src="IngeAnalisys/icons/view_top_light.svg" width="22">   | Vista em planta                  | `panel.set_view("top")`           | `Shift+5`     |
+| 10 | <img src="IngeAnalisys/icons/fit_light.svg" width="22">        | Enquadrar o sítio                | `panel.set_view("fit")`           | `Shift+0`     |
+| 11 | <img src="IngeAnalisys/icons/sun_light.svg" width="22">        | Calcular radiação                | `panel._on_rad()`                 | `Shift+R`     |
+| 12 | <img src="IngeAnalisys/icons/export_light.svg" width="22">     | Exportar PNG…                    | `panel._on_png()`                 | `Shift+E`     |
+| 12 | <img src="IngeAnalisys/icons/info_light.svg" width="22">       | Mostrar / ocultar painel de informação | `panel._on_notes(checked)`  | `Shift+I`     |
+| —  | <img src="IngeAnalisys/icons/panel_light.svg" width="22">      | Mostrar / ocultar o painel de análise | `app.show_panel(dock)` / `dock.hide()` | `Shift+P` |
 
 
 `👁`, `▶`, `🎛` e `⚙` são **checkable** e ficam em sincronia com o

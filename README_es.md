@@ -410,25 +410,25 @@ encendido/apagado del panel.
 
 | Icono | Tooltip | Acción | Atajo |
 |---|---|---|---|
-| <img src="icons/epw_light.svg" width="22">        | Abrir EPW…                      | `panel._on_open_epw()`           | `Shift+Y`     |
-| <img src="icons/pin_light.svg" width="22">        | Elegir ubicación en el mapa…    | `panel._on_pick_map()`           | `Shift+K`     |
-| <img src="icons/north_light.svg" width="22">      | Definir norte de la arista      | `panel._on_pick_north_edge()`    | `Shift+C`     |
-| <img src="icons/eye_light.svg" width="22">        | Mostrar / ocultar el análisis   | `act.toggle_analysis(sitio)`     | `Shift+H`     |
-| <img src="icons/play_light.svg" width="22">       | Animar el recorrido solar       | `panel._on_anim()`               | `Shift+Space` |
-| <img src="icons/wind_light.svg" width="22">       | Aplicar vientos dominantes (EPW)| `panel._on_dominant()`           | `Shift+W`     |
-| <img src="icons/chart_light.svg" width="22">      | Guardar gráficos del clima (PNG)…| `panel._on_save_charts()`       | `Shift+G`     |
-| <img src="icons/basemap_light.svg" width="22">    | Descargar mapa base             | `panel._on_basemap()`            | `Shift+B`     |
-| <img src="icons/osm_light.svg" width="22">        | Cargar edificios de OSM         | `panel._on_osm()`                | `Shift+O`     |
-| <img src="icons/osm_off_light.svg" width="22">    | Quitar contexto OSM             | `act.set_context(sitio, None, …)`| `Shift+Delete`|
-| <img src="icons/mass_light.svg" width="22">       | Masa desde caras                | `panel._make_masses("mass")`     | `Shift+M`     |
-| <img src="icons/lot_light.svg" width="22">        | Lote desde caras                | `panel._make_masses("lot")`      | `Shift+L`     |
-| <img src="icons/star_light.svg" width="22">       | Anotar con el icono elegido     | `panel._place_pin(True)`         | `Shift+A`     |
-| <img src="icons/view_top_light.svg" width="22">   | Vista en planta                 | `panel.set_view("top")`          | `Shift+5`     |
-| <img src="icons/fit_light.svg" width="22">        | Encuadrar el sitio              | `panel.set_view("fit")`          | `Shift+0`     |
-| <img src="icons/sun_light.svg" width="22">        | Calcular radiación              | `panel._on_rad()`                | `Shift+R`     |
-| <img src="icons/export_light.svg" width="22">     | Exportar PNG…                   | `panel._on_png()`                | `Shift+E`     |
-| <img src="icons/info_light.svg" width="22">       | Mostrar / ocultar panel de información | `panel._on_notes(checked)` | `Shift+I`     |
-| <img src="icons/panel_light.svg" width="22">      | Mostrar / ocultar el panel de análisis | `app.show_panel(dock)` / `dock.hide()` | `Shift+P` |
+| <img src="IngeAnalisys/icons/epw_light.svg" width="22">        | Abrir EPW…                      | `panel._on_open_epw()`           | `Shift+Y`     |
+| <img src="IngeAnalisys/icons/pin_light.svg" width="22">        | Elegir ubicación en el mapa…    | `panel._on_pick_map()`           | `Shift+K`     |
+| <img src="IngeAnalisys/icons/north_light.svg" width="22">      | Definir norte de la arista      | `panel._on_pick_north_edge()`    | `Shift+C`     |
+| <img src="IngeAnalisys/icons/eye_light.svg" width="22">        | Mostrar / ocultar el análisis   | `act.toggle_analysis(sitio)`     | `Shift+H`     |
+| <img src="IngeAnalisys/icons/play_light.svg" width="22">       | Animar el recorrido solar       | `panel._on_anim()`               | `Shift+Space` |
+| <img src="IngeAnalisys/icons/wind_light.svg" width="22">       | Aplicar vientos dominantes (EPW)| `panel._on_dominant()`           | `Shift+W`     |
+| <img src="IngeAnalisys/icons/chart_light.svg" width="22">      | Guardar gráficos del clima (PNG)…| `panel._on_save_charts()`       | `Shift+G`     |
+| <img src="IngeAnalisys/icons/basemap_light.svg" width="22">    | Descargar mapa base             | `panel._on_basemap()`            | `Shift+B`     |
+| <img src="IngeAnalisys/icons/osm_light.svg" width="22">        | Cargar edificios de OSM         | `panel._on_osm()`                | `Shift+O`     |
+| <img src="IngeAnalisys/icons/osm_off_light.svg" width="22">    | Quitar contexto OSM             | `act.set_context(sitio, None, …)`| `Shift+Delete`|
+| <img src="IngeAnalisys/icons/mass_light.svg" width="22">       | Masa desde caras                | `panel._make_masses("mass")`     | `Shift+M`     |
+| <img src="IngeAnalisys/icons/lot_light.svg" width="22">        | Lote desde caras                | `panel._make_masses("lot")`      | `Shift+L`     |
+| <img src="IngeAnalisys/icons/star_light.svg" width="22">       | Anotar con el icono elegido     | `panel._place_pin(True)`         | `Shift+A`     |
+| <img src="IngeAnalisys/icons/view_top_light.svg" width="22">   | Vista en planta                 | `panel.set_view("top")`          | `Shift+5`     |
+| <img src="IngeAnalisys/icons/fit_light.svg" width="22">        | Encuadrar el sitio              | `panel.set_view("fit")`          | `Shift+0`     |
+| <img src="IngeAnalisys/icons/sun_light.svg" width="22">        | Calcular radiación              | `panel._on_rad()`                | `Shift+R`     |
+| <img src="IngeAnalisys/icons/export_light.svg" width="22">     | Exportar PNG…                   | `panel._on_png()`                | `Shift+E`     |
+| <img src="IngeAnalisys/icons/info_light.svg" width="22">       | Mostrar / ocultar panel de información | `panel._on_notes(checked)` | `Shift+I`     |
+| <img src="IngeAnalisys/icons/panel_light.svg" width="22">      | Mostrar / ocultar el panel de análisis | `app.show_panel(dock)` / `dock.hide()` | `Shift+P` |
 
 `👁`, `▶`, `🎛` y `⚙` son **checkable** y se mantienen en sincronía con el
 documento (`view["on"]`), el timer de animación del sol
@@ -443,13 +443,13 @@ Utilidades y herramientas de análisis, también agrupadas por sección.
 
 | Icono | Tooltip | Acción | Atajo |
 |---|---|---|---|
-| <img src="icons/chart_light.svg" width="22">    | Guardar gráficos del clima (PNG)… | `panel._on_save_charts()`           | `Shift+G`      |
-| <img src="icons/basemap_light.svg" width="22">  | Descargar mapa base             | `panel._on_basemap()`               | `Shift+B`      |
-| <img src="icons/osm_light.svg" width="22">      | Cargar edificios de OSM         | `panel._on_osm()`                   | `Shift+O`      |
-| <img src="icons/osm_off_light.svg" width="22">  | Quitar contexto OSM             | `act.set_context(sitio, None, …)`   | `Shift+Delete` |
-| <img src="icons/view_top_light.svg" width="22"> | Vista en planta                 | `panel.set_view("top")`             | `Shift+5`      |
-| <img src="icons/sun_light.svg" width="22">      | Calcular radiación              | `panel._on_rad()`                   | `Shift+R`      |
-| <img src="icons/info_light.svg" width="22">     | Mostrar / ocultar panel de información | `panel._on_notes(checked)` | `Shift+I`      |
+| <img src="IngeAnalisys/icons/chart_light.svg" width="22">    | Guardar gráficos del clima (PNG)… | `panel._on_save_charts()`           | `Shift+G`      |
+| <img src="IngeAnalisys/icons/basemap_light.svg" width="22">  | Descargar mapa base             | `panel._on_basemap()`               | `Shift+B`      |
+| <img src="IngeAnalisys/icons/osm_light.svg" width="22">      | Cargar edificios de OSM         | `panel._on_osm()`                   | `Shift+O`      |
+| <img src="IngeAnalisys/icons/osm_off_light.svg" width="22">  | Quitar contexto OSM             | `act.set_context(sitio, None, …)`   | `Shift+Delete` |
+| <img src="IngeAnalisys/icons/view_top_light.svg" width="22"> | Vista en planta                 | `panel.set_view("top")`             | `Shift+5`      |
+| <img src="IngeAnalisys/icons/sun_light.svg" width="22">      | Calcular radiación              | `panel._on_rad()`                   | `Shift+R`      |
+| <img src="IngeAnalisys/icons/info_light.svg" width="22">     | Mostrar / ocultar panel de información | `panel._on_notes(checked)` | `Shift+I`      |
 
 `🎛` es **checkable** y se mantiene en sincronía con `sitio.show_notes`
 (la casilla de la sección 12). `☷` oculta/muestra **todas** las barras de
