@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2026 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5.4186mm" height="5.4186mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 541.86 541.86"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:cc="http://web.resource.org/cc/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:svg="http://www.w3.org/2000/svg"
+ xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+ xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:#373435;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .str0 {stroke:#727376;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .str1 {stroke:#373435;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil3 {fill:none}
+    .fil2 {fill:#748FB7}
+    .fil1 {fill:#85A679}
+    .fil0 {fill:#ADC8F0}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <sodipodi:namedview id="base" showgrid="true" gridspacingy="1pt" gridspacingx="1pt" gridoriginy="0pt" gridoriginx="0pt"/>
+  <g>
+   <polygon class="fil0" points="59.26,160.52 228.74,40.27 482.6,108.49 313.12,228.74 "/>
+   <polygon class="fil1" points="482.6,243.95 482.6,381.34 313.12,501.59 313.12,364.2 "/>
+   <polygon class="fil1" points="59.26,295.98 313.12,364.2 313.12,501.59 59.26,433.37 "/>
+   <polygon class="fil2" points="482.6,108.49 482.6,245.88 313.12,366.13 313.12,228.74 "/>
+   <polygon class="fil2" points="59.26,160.52 313.12,228.74 313.12,366.13 59.26,297.91 "/>
+   <path class="fil3 str0" d="M59.26 433.37l169.48 -120.25m-169.48 -15.21l169.48 -120.25m253.86 68.22l-253.86 -68.22m0 -137.39l0 272.85m253.86 68.22l-253.86 -68.22"/>
+   <path class="fil3 str1" d="M485.71 106.28l-169.48 120.25m169.48 15.21l-169.48 120.25m-253.86 -68.22l253.86 68.22m0 137.39l0 -272.85m-253.86 -68.22l253.86 68.22"/>
+   <polygon class="fil3 str2" points="59.26,160.52 228.74,40.27 482.6,108.49 482.6,381.34 313.12,501.59 59.26,433.37 "/>
+  </g>
+ </g>
+</svg>
